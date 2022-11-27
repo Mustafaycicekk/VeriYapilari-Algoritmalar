@@ -1,31 +1,41 @@
-Insertion Sort
-[22,27,16,2,18,6] -> Insertion Sort
-1) Yukarı verilen dizinin sort türüne göre aşamalarını yazınız.
-[22,27,16,2,18,6] -> 22<27 22 dizinde 27 'den küçük olduğu için 22,27 şeklinde sıralanır.
-[22,27|16,2,18,6] -> 16<27, 16<22 16 dizinde 22, 27 'den küçük olduğu için 16,22,27 şeklinde sıralanır.
-[16,22,27|2,18,6] -> 2<27, 2<22, 2<16 2dizinde 16, 22, 27 'den küçük olduğu için 2,16,22,27 şeklinde sıralanır.
-[2,16,22,27|18,6] -> 18<27, 18<22, 16<18 18dizinde 22,27 'den küçük 2,16'dan büyük olduğu için 2,16,18,22,27 şeklinde sıralanır.
-[2,16,18,22,27|6] -> 6<27, 6<22, 6<18, 6<16 2<6 6dizinde 16,18,22,27 'den küçük 2'den büyük olduğu için 2,6,16,18,22,27 şeklinde sıralanır.
-[2,6,16,18,22,27]
-2) Big-O gösterimini yazınız.
-Dizideki eleman sayısı n olsun. Big-O yöntemine göre sıralama yapılırken işlem sayısı da n olur. Son işlem sayısı 1 olana kadar devam eder.
-Insertion Sort algoritması n elemanlı bir listede, ikinci eleman için en fazla 1 karşılaştırma ve 1 yer değiştirme yapar.
-Üçüncü eleman için 2 karşılaştırma ve 2 yer değiştirme, dördüncü eleman için 3 karşılaştırma ve 3 yer değiştirme yapar. Bu şekilde son eleman için en fazla n-1 karşılaştırma ve n-1 yer değiştirme yapar.
-Listedeki bütün elemanlar için yapılan karşılaştırmaların ve yer değiştirmelerin toplamı 2(1+2+3+4+...+(n-2)+(n-1))=2(n(n-1)/2)=n(n-1) yapar.
-Hesaplamalar sonucunda elde edilen n(n-1) değerinin asimptotik üst sınırı O(n²) değerini verir.
-Big-O değeri = O(n²)
-3) Time Complexity: Dizi sıralandıktan sonra 18 sayısı aşağıdaki case'lerden hangisinin kapsamına girer? Yazınız.
-Average case: Aradığımız sayının ortada olması [.,.,.,18,.,.,.]
+# Proje 1
+### [22,27,16,2,18,6] -> Insertion Sort
+***
+#### 1) Yukarı verilen dizinin sort türüne göre aşamalarını yazınız.
 
-Worst case: Aradığımız sayının sonda olması [.,.,.,.,.,.,18]
+1. [2,27,16,22,18,6] -> ```2``` dizinin küçük sayısıdır, en başa alabilmek için ```22``` ile yer değiştirir.
+2. [2,6,16,22,18,27] -> İkinci küçük sayı ```6```'dır ikinci sıraya almak için ```27``` ile yer değiştirir.
+3. [2,6,16,18,22,27] -> Üçüncü sayı ```16```'dır, sıralaması doğru olduğu için herhangi bir değişiklik yapılmaz. Dördüncü sayı ```18```'dir ve sıralamaya uygun olması için ```22``` ile yer değiştirir. Beşinci ve altıncı sayı sıralamaya uygun olduğundan sıralamada herhangi bir değişiklik yapılmaz.
+*** 
+#### 2) Big-O gösterimini yazınız.
+###### Dizideki eleman sayısı n olsun. Big-O yöntemine göre sıralama yapılırken işlem sayısı da ```n``` olur. Son işlem sayısı ```1``` olana kadar devam eder.
+- ```[22,27,16,2,18,6]``` dizisinde 6 tane eleman vardır, yani 6 tane işlem yapılacaktır demektir. Şöyle ki,
+- ilk adımda ```n```-> 6 tane işlem,
+- ikinci adımda en küçük elemanı (yani birinci) bulmak için ```(n-1)```-> 6-1=5 tane işlem,
+- Üçüncü adımda ikinci elemanı bulmak için ```(n-2)```-> 6-2=4 tane işlem,
+- Dördüncü adımda üçüncü elemanı bulmak için ```(n-3)```-> 6-3=3 tane işlem,
+- Beşinci adımda dördüncü elemanı bulmak için ```(n-4)```-> 6-4=2 tane işlem yapılır.
+- Altı elemanlı dizi olduğu için daha fazla işlem yapılmasına gerek yoktur çünkü son eleman altıncı elemandır. 
+- Bu algoritmada ```n+(n-1)+(n-2)+(n-3)+(n-4)+1``` kadar işlem yapılır. Bu işlemin formülü: ```[n(n+1)]/2```'dir. Bu formül sadeleştirilerek: ```(n²+n)/2``` elde edilir.
+- Big-O Notation'da kat sayı önemsizdir; yani domine eden fonksiyon ```n²``` alınır.
+#### Big-O değeri = O(n²)
+* * *
+#### 3) Time Complexity: Dizi sıralandıktan sonra 18 sayısı aşağıdaki case'lerden hangisinin kapsamına girer? Yazınız.
 
-Best case: Aradığımız sayının dizinin en başında olması [18,.,.,.,.,.,.,]
+- ```Average case: Aradığımız sayının ortada olması```
+  - [.,.,.,18,.,.,.] 
+- ```Worst case: Aradığımız sayının sonda olması```
+  - [.,.,.,.,.,.,18]
+- ```Best case: Aradığımız sayının dizinin en başında olması```
+  - [18,.,.,.,.,.,.,]
+ 
+- [2,6,16,18,22,27] dizisine bakıldığında 18 sayısı ortada olduğu için ```Average Case``` kapsamına girer.
+***
+#### 4) [7,3,5,8,2,9,4,15,6] dizisinin Selection Sort'a göre ilk 4 adımını yazınız.
+1. [```2```,3,5,8,7,9,4,15,6]
+2. [2,```3```,5,8,7,9,4,15,6]
+3. [2,3,```4```,8,7,9,5,15,6]
+4. [2,3,4,```5```,7,9,8,15,6]
 
-[2,6,16,18,22,27] dizisine bakıldığında 18 sayısı ortada olduğu için Average Case kapsamına girer.
-
-Selection Sort
-4) [7,3,5,8,2,9,4,15,6] dizisinin Selection Sort'a göre ilk 4 adımını yazınız.
-[2,3,5,8,7,9,4,15,6]
-[2,3,5,8,7,9,4,15,6]
-[2,3,4,8,7,9,5,15,6]
-[2,3,4,5,7,9,8,15,6]
+***
+[Patika.dev](https://www.patika.dev/tr)
