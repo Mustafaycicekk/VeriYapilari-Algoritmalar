@@ -1,0 +1,2 @@
+# VeriYapilari-Algoritmalar
+ patika.dev
